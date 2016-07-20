@@ -77,7 +77,7 @@ RSpec.describe Rex::Arch::X86 do
       end
 
       context "is invalid" do
-        it { expect { described_class._check_reg(0xfffffff) }.to raise_error(Rex::ArgumentError) }
+        it { expect { described_class._check_reg(0xfffffff) }.to raise_error(ArgumentError) }
       end
     end
 
@@ -87,7 +87,7 @@ RSpec.describe Rex::Arch::X86 do
       end
 
       context "include an invalid one" do
-        it { expect { described_class._check_reg(Rex::Arch::X86::EDI, 0xfffffff) }.to raise_error(Rex::ArgumentError) }
+        it { expect { described_class._check_reg(Rex::Arch::X86::EDI, 0xfffffff) }.to raise_error(ArgumentError) }
       end
     end
   end
@@ -99,7 +99,7 @@ RSpec.describe Rex::Arch::X86 do
       let(:badchars) { "sac" }
 
       it "raises an error" do
-        expect { subject }.to raise_error(Rex::RuntimeError)
+        expect { subject }.to raise_error(RuntimeError)
       end
     end
 
