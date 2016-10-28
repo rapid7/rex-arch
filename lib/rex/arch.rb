@@ -51,6 +51,7 @@ module Arch
     [
       ARCH_X86,
       ARCH_X86_64,
+      ARCH_X64,
       ARCH_MIPS,
       ARCH_MIPSLE,
       ARCH_MIPSBE,
@@ -147,6 +148,8 @@ module Arch
       when ARCH_X86
         return ENDIAN_LITTLE
       when ARCH_X86_64
+        return ENDIAN_LITTLE
+      when ARCH_X64
         return ENDIAN_LITTLE
       when ARCH_MIPS # ambiguous
         return ENDIAN_BIG
