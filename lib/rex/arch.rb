@@ -30,8 +30,10 @@ module Arch
   ARCH_MIPS    = 'mips'
   ARCH_MIPSLE  = 'mipsle'
   ARCH_MIPSBE  = 'mipsbe'
+  ARCH_MIPS64  = 'mips64'
   ARCH_PPC     = 'ppc'
   ARCH_PPC64   = 'ppc64'
+  ARCH_PPC64LE = 'ppc64le'
   ARCH_CBEA    = 'cbea'
   ARCH_CBEA64  = 'cbea64'
   ARCH_SPARC   = 'sparc'
@@ -40,6 +42,7 @@ module Arch
   ARCH_TTY     = 'tty'
   ARCH_ARMLE   = 'armle'
   ARCH_ARMBE   = 'armbe'
+  ARCH_AARCH64 = 'aarch64'
   ARCH_JAVA    = 'java'
   ARCH_RUBY    = 'ruby'
   ARCH_DALVIK  = 'dalvik'
@@ -55,13 +58,16 @@ module Arch
       ARCH_MIPS,
       ARCH_MIPSLE,
       ARCH_MIPSBE,
+      ARCH_MIPS64,
       ARCH_PPC,
       ARCH_PPC64,
+      ARCH_PPC64LE,
       ARCH_CBEA,
       ARCH_CBEA64,
       ARCH_SPARC,
       ARCH_ARMLE,
       ARCH_ARMBE,
+      ARCH_AARCH64,
       ARCH_CMD,
       ARCH_PHP,
       ARCH_TTY,
@@ -122,14 +128,20 @@ module Arch
         [addr].pack('N')
       when ARCH_MIPSLE
         [addr].pack('V')
+      when ARCH_MIPS64
+        [addr].pack('Q>')
       when ARCH_PPC  # ambiguous
         [addr].pack('N')
+      when ARCH_PPC64LE
+        [addr].pack('Q<')
       when ARCH_SPARC
         [addr].pack('N')
       when ARCH_ARMLE
         [addr].pack('V')
       when ARCH_ARMBE
         [addr].pack('N')
+      when ARCH_AARCH64
+        [addr].pack('Q<')
       when ARCH_ZARCH
         [addr].pack('Q>')
     end
@@ -157,14 +169,20 @@ module Arch
         return ENDIAN_LITTLE
       when ARCH_MIPSBE
         return ENDIAN_BIG
+      when ARCH_MIPS64
+        return ENDIAN_BIG
       when ARCH_PPC  # ambiguous
         return ENDIAN_BIG
+      when ARCH_PPC64LE
+        return ENDIAN_LITTLE
       when ARCH_SPARC
         return ENDIAN_BIG
       when ARCH_ARMLE
         return ENDIAN_LITTLE
       when ARCH_ARMBE
         return ENDIAN_BIG
+      when ARCH_AARCH64
+        return ENDIAN_LITTLE
       when ARCH_ZARCH
         return ENDIAN_BIG
     end
