@@ -33,12 +33,14 @@ module Arch
       ARCH_MIPSLE  = 'mipsle',
       ARCH_MIPSBE  = 'mipsbe',
       ARCH_MIPS64  = 'mips64',
+      ARCH_MIPS64LE = 'mips64le',
       ARCH_PPC     = 'ppc',
       ARCH_PPC64   = 'ppc64',
       ARCH_PPC64LE = 'ppc64le',
       ARCH_CBEA    = 'cbea',
       ARCH_CBEA64  = 'cbea64',
       ARCH_SPARC   = 'sparc',
+      ARCH_SPARC64 = 'sparc64',
       ARCH_ARMLE   = 'armle',
       ARCH_ARMBE   = 'armbe',
       ARCH_AARCH64 = 'aarch64',
@@ -102,12 +104,16 @@ module Arch
         [addr].pack('V')
       when ARCH_MIPS64
         [addr].pack('Q>')
+      when ARCH_MIPS64LE
+        [addr].pack('Q<')
       when ARCH_PPC  # ambiguous
         [addr].pack('N')
       when ARCH_PPC64LE
         [addr].pack('Q<')
       when ARCH_SPARC
         [addr].pack('N')
+      when ARCH_SPARC64
+        [addr].pack('Q>')
       when ARCH_ARMLE
         [addr].pack('V')
       when ARCH_ARMBE
@@ -143,11 +149,15 @@ module Arch
         return ENDIAN_BIG
       when ARCH_MIPS64
         return ENDIAN_BIG
+      when ARCH_MIPS64LE
+        return ENDIAN_LITTLE
       when ARCH_PPC  # ambiguous
         return ENDIAN_BIG
       when ARCH_PPC64LE
         return ENDIAN_LITTLE
       when ARCH_SPARC
+        return ENDIAN_BIG
+      when ARCH_SPARC64
         return ENDIAN_BIG
       when ARCH_ARMLE
         return ENDIAN_LITTLE

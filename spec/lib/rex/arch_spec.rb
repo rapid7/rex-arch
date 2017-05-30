@@ -94,6 +94,14 @@ RSpec.describe Rex::Arch do
       end
     end
 
+    context "when arch is ARCH_MIPS64LE" do
+      let(:arch) { Rex::Arch::ARCH_MIPS64LE }
+      let(:addr) { 0x4142434445464748 }
+      it "packs addr as 64-bit unsigned, little-endian" do
+        is_expected.to eq("HGFEDCBA")
+      end
+    end
+
     context "when arch is ARCH_PPC" do
       let(:arch) { Rex::Arch::ARCH_PPC }
       let(:addr) { 0x41424344 }
@@ -118,6 +126,14 @@ RSpec.describe Rex::Arch do
       end
     end
 
+    context "when arch is ARCH_SPARC64" do
+      let(:arch) { Rex::Arch::ARCH_SPARC64 }
+      let(:addr) { 0x4142434445464748 }
+      it "packs addr as 64-bit unsigned, big-endian" do
+        is_expected.to eq("ABCDEFGH")
+      end
+    end
+
     context "when arch is ARCH_ARMLE" do
       let(:arch) { Rex::Arch::ARCH_ARMLE }
       let(:addr) { 0x41424344 }
@@ -139,6 +155,14 @@ RSpec.describe Rex::Arch do
       let(:addr) { 0x4142434445464748 }
       it "packs addr as 64-bit unsigned, little-endian" do
         is_expected.to eq("HGFEDCBA")
+      end
+    end
+
+    context "when arch is ARCH_ZARCH" do
+      let(:arch) { Rex::Arch::ARCH_ZARCH }
+      let(:addr) { 0x4142434445464748 }
+      it "packs addr as 64-bit unsigned, big-endian" do
+        is_expected.to eq("ABCDEFGH")
       end
     end
 
