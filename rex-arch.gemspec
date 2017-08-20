@@ -8,8 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = Rex::Arch::VERSION
   spec.authors       = ["dmohanty-r7"]
   spec.email         = ["Dev_Mohanty@rapid7.com"]
+  spec.license       = "BSD-3-Clause"
 
-  spec.summary       = %q{This library contains architecture specific information such as registers, opcodes, and stack manipulation routines.}
+  spec.summary       = %q{Ruby Exploitation Library - rex-arch}
   spec.description   = %q{This library contains architecture specific information such as registers, opcodes, and stack manipulation routines.}
   spec.homepage      = "https://github.com/rapid7/rex-arch"
 
@@ -18,9 +19,9 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version = '>= 2.2.0'
 
-  spec.add_development_dependency "bundler", "~> 1.12"
-  spec.add_development_dependency "rake", "~> 10.0"
-  spec.add_development_dependency "rspec", "~> 3.0"
+  spec.add_development_dependency "bundler"
+  spec.add_development_dependency "rake"
+  spec.add_development_dependency "rspec"
 
   spec.add_runtime_dependency "rex-text"
 end
