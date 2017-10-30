@@ -72,7 +72,7 @@ module Arch
   #
   def self.adjust_stack_pointer(arch, adjustment)
 
-    if ( arch.is_a?(::Array))
+    if arch.is_a?(::Array)
       arch = arch[0]
     end
 
@@ -109,6 +109,8 @@ module Arch
       when ARCH_MIPS64LE
         [addr].pack('Q<')
       when ARCH_PPC  # ambiguous
+        [addr].pack('N')
+      when ARCH_PPCE500V2
         [addr].pack('N')
       when ARCH_PPC64LE
         [addr].pack('Q<')
@@ -154,6 +156,8 @@ module Arch
       when ARCH_MIPS64LE
         return ENDIAN_LITTLE
       when ARCH_PPC  # ambiguous
+        return ENDIAN_BIG
+      when ARCH_PPCE500V2
         return ENDIAN_BIG
       when ARCH_PPC64LE
         return ENDIAN_LITTLE
