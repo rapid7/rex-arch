@@ -166,6 +166,22 @@ RSpec.describe Rex::Arch do
       end
     end
 
+    context "when arch is ARCH_SHLE" do
+      let(:arch) { Rex::Arch::ARCH_SHLE }
+      let(:addr) { 0x41424344 }
+      it "packs addr as 32-bit unsigned, little-endian" do
+        is_expected.to eq("DCBA")
+      end
+    end
+
+    context "when arch is ARCH_SHBE" do
+      let(:arch) { Rex::Arch::ARCH_SHBE }
+      let(:addr) { 0x41424344 }
+      it "packs addr as 32-bit unsigned, big-endian" do
+        is_expected.to eq("ABCD")
+      end
+    end
+
     context "when arch is invalid" do
       let(:arch) { Rex::Arch::ARCH_FIREFOX }
       let(:addr) { 0x41424344 }
@@ -199,7 +215,9 @@ RSpec.describe Rex::Arch do
         Rex::Arch::ARCH_SPARC => Rex::Arch::ENDIAN_BIG,
         Rex::Arch::ARCH_ARMLE => Rex::Arch::ENDIAN_LITTLE,
         Rex::Arch::ARCH_ARMBE => Rex::Arch::ENDIAN_BIG,
-        Rex::Arch::ARCH_AARCH64 => Rex::Arch::ENDIAN_LITTLE
+        Rex::Arch::ARCH_AARCH64 => Rex::Arch::ENDIAN_LITTLE,
+        Rex::Arch::ARCH_SHLE => Rex::Arch::ENDIAN_LITTLE,
+        Rex::Arch::ARCH_SHBE => Rex::Arch::ENDIAN_BIG
       }
     end
     subject { described_class.endian(arch) }

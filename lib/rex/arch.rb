@@ -55,7 +55,9 @@ module Arch
       ARCH_NODEJS    = 'nodejs',
       ARCH_FIREFOX   = 'firefox',
       ARCH_ZARCH     = 'zarch',
-      ARCH_R         = 'r'
+      ARCH_R         = 'r',
+      ARCH_SHLE     = 'shle',
+      ARCH_SHBE     = 'shbe'
     ]
 
   #
@@ -126,6 +128,10 @@ module Arch
         [addr].pack('Q<')
       when ARCH_ZARCH
         [addr].pack('Q>')
+      when ARCH_SHLE
+        [addr].pack('V')
+      when ARCH_SHBE
+        [addr].pack('N')
     end
   end
 
@@ -172,6 +178,10 @@ module Arch
       when ARCH_AARCH64
         return ENDIAN_LITTLE
       when ARCH_ZARCH
+        return ENDIAN_BIG
+      when ARCH_SHLE
+        return ENDIAN_LITTLE
+      when ARCH_SHBE
         return ENDIAN_BIG
     end
 
