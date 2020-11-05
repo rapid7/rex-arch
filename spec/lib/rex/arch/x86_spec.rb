@@ -1002,7 +1002,7 @@ RSpec.describe Rex::Arch::X86 do
       end
 
       it "returns a register as third element" do
-        expect(subject[2]).to be_an Fixnum
+        expect(subject[2]).to be_an Integer
       end
 
       context "when modified_registers passed" do
