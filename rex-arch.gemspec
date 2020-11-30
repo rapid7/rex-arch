@@ -6,8 +6,8 @@ require 'rex/arch/version'
 Gem::Specification.new do |spec|
   spec.name          = "rex-arch"
   spec.version       = Rex::Arch::VERSION
-  spec.authors       = ["dmohanty-r7"]
-  spec.email         = ["Dev_Mohanty@rapid7.com"]
+  spec.authors       = ['Metasploit Hackers']
+  spec.email         = ['msfdev@metasploit.com']
   spec.license       = "BSD-3-Clause"
 
   spec.summary       = %q{Ruby Exploitation Library - rex-arch}
@@ -19,7 +19,6 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version = '>= 2.2.0'
 
-  spec.add_development_dependency "bundler"
   spec.add_development_dependency "rake"
   spec.add_development_dependency "rspec"
 
