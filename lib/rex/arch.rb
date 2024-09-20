@@ -26,36 +26,41 @@ module Arch
   ARCH_ANY     = '_any_'
   ARCH_ALL = ARCH_TYPES   =
     [
-      ARCH_X86       = 'x86',
-      ARCH_X86_64    = 'x86_64',
-      ARCH_X64       = 'x64', # To be used for compatability with ARCH_X86_64
-      ARCH_MIPS      = 'mips',
-      ARCH_MIPSLE    = 'mipsle',
-      ARCH_MIPSBE    = 'mipsbe',
-      ARCH_MIPS64    = 'mips64',
-      ARCH_MIPS64LE  = 'mips64le',
-      ARCH_PPC       = 'ppc',
-      ARCH_PPCE500V2 = 'ppce500v2',
-      ARCH_PPC64     = 'ppc64',
-      ARCH_PPC64LE   = 'ppc64le',
-      ARCH_CBEA      = 'cbea',
-      ARCH_CBEA64    = 'cbea64',
-      ARCH_SPARC     = 'sparc',
-      ARCH_SPARC64   = 'sparc64',
-      ARCH_ARMLE     = 'armle',
-      ARCH_ARMBE     = 'armbe',
-      ARCH_AARCH64   = 'aarch64',
-      ARCH_CMD       = 'cmd',
-      ARCH_PHP       = 'php',
-      ARCH_TTY       = 'tty',
-      ARCH_JAVA      = 'java',
-      ARCH_RUBY      = 'ruby',
-      ARCH_DALVIK    = 'dalvik',
-      ARCH_PYTHON    = 'python',
-      ARCH_NODEJS    = 'nodejs',
-      ARCH_FIREFOX   = 'firefox',
-      ARCH_ZARCH     = 'zarch',
-      ARCH_R         = 'r'
+      ARCH_X86         = 'x86',
+      ARCH_X86_64      = 'x86_64',
+      ARCH_X64         = 'x64', # To be used for compatability with ARCH_X86_64
+      ARCH_MIPS        = 'mips',
+      ARCH_MIPSLE      = 'mipsle',
+      ARCH_MIPSBE      = 'mipsbe',
+      ARCH_MIPS64      = 'mips64',
+      ARCH_MIPS64LE    = 'mips64le',
+      ARCH_PPC         = 'ppc',
+      ARCH_PPCE500V2   = 'ppce500v2',
+      ARCH_PPC64       = 'ppc64',
+      ARCH_PPC64LE     = 'ppc64le',
+      ARCH_CBEA        = 'cbea',
+      ARCH_CBEA64      = 'cbea64',
+      ARCH_SPARC       = 'sparc',
+      ARCH_SPARC64     = 'sparc64',
+      ARCH_ARMLE       = 'armle',
+      ARCH_ARMBE       = 'armbe',
+      ARCH_AARCH64     = 'aarch64',
+      ARCH_CMD         = 'cmd',
+      ARCH_PHP         = 'php',
+      ARCH_TTY         = 'tty',
+      ARCH_JAVA        = 'java',
+      ARCH_RUBY        = 'ruby',
+      ARCH_DALVIK      = 'dalvik',
+      ARCH_PYTHON      = 'python',
+      ARCH_NODEJS      = 'nodejs',
+      ARCH_FIREFOX     = 'firefox',
+      ARCH_ZARCH       = 'zarch',
+      ARCH_R           = 'r',
+      ARCH_RISCV32BE   = 'riscv32be',
+      ARCH_RISCV32LE   = 'riscv32le',
+      ARCH_RISCV64BE   = 'riscv64be',
+      ARCH_RISCV64LE   = 'riscv64le',
+      ARCH_LOONGARCH64 = 'loongarch64',
     ]
 
   #
@@ -126,6 +131,16 @@ module Arch
         [addr].pack('Q<')
       when ARCH_ZARCH
         [addr].pack('Q>')
+      when ARCH_RISCV32BE
+        [addr].pack('N')
+      when ARCH_RISCV32LE
+        [addr].pack('V')
+      when ARCH_RISCV64BE
+        [addr].pack('Q>')
+      when ARCH_RISCV64LE
+        [addr].pack('Q<')
+      when ARCH_LOONGARCH64
+        [addr].pack('Q<')
     end
   end
 
@@ -173,6 +188,16 @@ module Arch
         return ENDIAN_LITTLE
       when ARCH_ZARCH
         return ENDIAN_BIG
+      when ARCH_RISCV32BE
+        return ENDIAN_BIG
+      when ARCH_RISCV32LE
+        return ENDIAN_LITTLE
+      when ARCH_RISCV64BE
+        return ENDIAN_BIG
+      when ARCH_RISCV64LE
+        return ENDIAN_LITTLE
+      when ARCH_LOONGARCH64
+        return ENDIAN_LITTLE
     end
 
     return ENDIAN_LITTLE

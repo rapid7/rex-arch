@@ -166,6 +166,46 @@ RSpec.describe Rex::Arch do
       end
     end
 
+    context "when arch is ARCH_RISCV32BE" do
+      let(:arch) { Rex::Arch::ARCH_RISCV32BE }
+      let(:addr) { 0x41424344 }
+      it "packs addr as 32-bit unsigned, big-endian" do
+        is_expected.to eq("ABCD")
+      end
+    end
+
+    context "when arch is ARCH_RISCV32LE" do
+      let(:arch) { Rex::Arch::ARCH_RISCV32LE }
+      let(:addr) { 0x41424344 }
+      it "packs addr as 32-bit unsigned, little-endian" do
+        is_expected.to eq("DCBA")
+      end
+    end
+
+    context "when arch is ARCH_RISCV64BE" do
+      let(:arch) { Rex::Arch::ARCH_RISCV64BE }
+      let(:addr) { 0x4142434445464748 }
+      it "packs addr as 64-bit unsigned, big-endian" do
+        is_expected.to eq("ABCDEFGH")
+      end
+    end
+
+    context "when arch is ARCH_RISCV64LE" do
+      let(:arch) { Rex::Arch::ARCH_RISCV64LE }
+      let(:addr) { 0x4142434445464748 }
+      it "packs addr as 64-bit unsigned, little-endian" do
+        is_expected.to eq("HGFEDCBA")
+      end
+    end
+
+    context "when arch is ARCH_LOONGARCH64" do
+      let(:arch) { Rex::Arch::ARCH_LOONGARCH64 }
+      let(:addr) { 0x4142434445464748 }
+      it "packs addr as 64-bit unsigned, little-endian" do
+        is_expected.to eq("HGFEDCBA")
+      end
+    end
+
     context "when arch is invalid" do
       let(:arch) { Rex::Arch::ARCH_FIREFOX }
       let(:addr) { 0x41424344 }
@@ -199,7 +239,12 @@ RSpec.describe Rex::Arch do
         Rex::Arch::ARCH_SPARC => Rex::Arch::ENDIAN_BIG,
         Rex::Arch::ARCH_ARMLE => Rex::Arch::ENDIAN_LITTLE,
         Rex::Arch::ARCH_ARMBE => Rex::Arch::ENDIAN_BIG,
-        Rex::Arch::ARCH_AARCH64 => Rex::Arch::ENDIAN_LITTLE
+        Rex::Arch::ARCH_AARCH64 => Rex::Arch::ENDIAN_LITTLE,
+        Rex::Arch::ARCH_RISCV32BE => Rex::Arch::ENDIAN_BIG,
+        Rex::Arch::ARCH_RISCV32LE => Rex::Arch::ENDIAN_LITTLE,
+        Rex::Arch::ARCH_RISCV64BE => Rex::Arch::ENDIAN_BIG,
+        Rex::Arch::ARCH_RISCV64LE => Rex::Arch::ENDIAN_LITTLE,
+        Rex::Arch::ARCH_LOONGARCH64 => Rex::Arch::ENDIAN_LITTLE,
       }
     end
     subject { described_class.endian(arch) }
