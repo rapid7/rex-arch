@@ -118,6 +118,14 @@ RSpec.describe Rex::Arch do
       end
     end
 
+    context "when arch is ARCH_PPCE500V2" do
+      let(:arch) { Rex::Arch::ARCH_PPCE500V2 }
+      let(:addr) { 0x41424344 }
+      it "packs addr as 32-bit unsigned, big-endian" do
+        is_expected.to eq("ABCD")
+      end
+    end
+
     context "when arch is ARCH_SPARC" do
       let(:arch) { Rex::Arch::ARCH_SPARC }
       let(:addr) { 0x41424344 }
