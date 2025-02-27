@@ -1039,4 +1039,45 @@ RSpec.describe Rex::Arch::X86 do
     end
   end
 
+  describe ".register_names_to_ids" do
+    subject { described_class.register_names_to_ids(registers) }
+
+    context "when registers are not provided" do
+      let(:registers) { nil }
+
+      it "returns an empty Array" do
+        is_expected.to be_an Array
+        is_expected.to be_empty
+      end
+    end
+
+    context "when registers are invalid" do
+      let(:registers) { "not-a-register" }
+
+      it "raises an error" do
+        expect { subject }.to raise_error(NameError)
+      end
+    end
+
+    context "when registers are valid" do
+      let(:registers) { " eax, ecx, edx, ebx, esp, ebp, esi, edi " }
+
+      it "returns an Array" do
+        is_expected.to be_an Array
+      end
+
+      it "returns an Integer for each register" do
+        expect(subject.length).to eq(8)
+        expect(subject[0]).to be_an Integer
+        expect(subject[1]).to be_an Integer
+        expect(subject[2]).to be_an Integer
+        expect(subject[3]).to be_an Integer
+        expect(subject[4]).to be_an Integer
+        expect(subject[5]).to be_an Integer
+        expect(subject[6]).to be_an Integer
+        expect(subject[7]).to be_an Integer
+      end
+    end
+  end
+
 end
