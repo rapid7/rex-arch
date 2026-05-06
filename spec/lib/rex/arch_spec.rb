@@ -284,4 +284,119 @@ RSpec.describe Rex::Arch do
       end
     end
   end
+
+  describe ".from_uname" do
+    subject { described_class.from_uname(uname_arch) }
+
+    context "when uname_arch is x86_64" do
+      let(:uname_arch) { 'x86_64' }
+      it { is_expected.to eq(Rex::Arch::ARCH_X86_64) }
+    end
+
+    context "when uname_arch is amd64" do
+      let(:uname_arch) { 'amd64' }
+      it { is_expected.to eq(Rex::Arch::ARCH_X86_64) }
+    end
+
+    context "when uname_arch is i686" do
+      let(:uname_arch) { 'i686' }
+      it { is_expected.to eq(Rex::Arch::ARCH_X86) }
+    end
+
+    context "when uname_arch is i386" do
+      let(:uname_arch) { 'i386' }
+      it { is_expected.to eq(Rex::Arch::ARCH_X86) }
+    end
+
+    context "when uname_arch is aarch64" do
+      let(:uname_arch) { 'aarch64' }
+      it { is_expected.to eq(Rex::Arch::ARCH_AARCH64) }
+    end
+
+    context "when uname_arch is arm64" do
+      let(:uname_arch) { 'arm64' }
+      it { is_expected.to eq(Rex::Arch::ARCH_AARCH64) }
+    end
+
+    context "when uname_arch is armv7l" do
+      let(:uname_arch) { 'armv7l' }
+      it { is_expected.to eq(Rex::Arch::ARCH_ARMLE) }
+    end
+
+    context "when uname_arch is armv7b" do
+      let(:uname_arch) { 'armv7b' }
+      it { is_expected.to eq(Rex::Arch::ARCH_ARMBE) }
+    end
+
+    context "when uname_arch is mips" do
+      let(:uname_arch) { 'mips' }
+      it { is_expected.to eq(Rex::Arch::ARCH_MIPSBE) }
+    end
+
+    context "when uname_arch is mipsel" do
+      let(:uname_arch) { 'mipsel' }
+      it { is_expected.to eq(Rex::Arch::ARCH_MIPSLE) }
+    end
+
+    context "when uname_arch is mips64" do
+      let(:uname_arch) { 'mips64' }
+      it { is_expected.to eq(Rex::Arch::ARCH_MIPS64) }
+    end
+
+    context "when uname_arch is mips64el" do
+      let(:uname_arch) { 'mips64el' }
+      it { is_expected.to eq(Rex::Arch::ARCH_MIPS64LE) }
+    end
+
+    context "when uname_arch is ppc" do
+      let(:uname_arch) { 'ppc' }
+      it { is_expected.to eq(Rex::Arch::ARCH_PPC) }
+    end
+
+    context "when uname_arch is ppc64" do
+      let(:uname_arch) { 'ppc64' }
+      it { is_expected.to eq(Rex::Arch::ARCH_PPC64) }
+    end
+
+    context "when uname_arch is ppc64le" do
+      let(:uname_arch) { 'ppc64le' }
+      it { is_expected.to eq(Rex::Arch::ARCH_PPC64LE) }
+    end
+
+    context "when uname_arch is s390x" do
+      let(:uname_arch) { 's390x' }
+      it { is_expected.to eq(Rex::Arch::ARCH_ZARCH) }
+    end
+
+    context "when uname_arch is sparc" do
+      let(:uname_arch) { 'sparc' }
+      it { is_expected.to eq(Rex::Arch::ARCH_SPARC) }
+    end
+
+    context "when uname_arch is sparc64" do
+      let(:uname_arch) { 'sparc64' }
+      it { is_expected.to eq(Rex::Arch::ARCH_SPARC64) }
+    end
+
+    context "when uname_arch is riscv64" do
+      let(:uname_arch) { 'riscv64' }
+      it { is_expected.to eq(Rex::Arch::ARCH_RISCV64LE) }
+    end
+
+    context "when uname_arch is loongarch64" do
+      let(:uname_arch) { 'loongarch64' }
+      it { is_expected.to eq(Rex::Arch::ARCH_LOONGARCH64) }
+    end
+
+    context "when uname_arch has leading/trailing whitespace" do
+      let(:uname_arch) { '  x86_64  ' }
+      it { is_expected.to eq(Rex::Arch::ARCH_X86_64) }
+    end
+
+    context "when uname_arch is unrecognized" do
+      let(:uname_arch) { 'unknown_arch' }
+      it { is_expected.to be_nil }
+    end
+  end
+
 end

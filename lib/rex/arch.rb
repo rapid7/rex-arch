@@ -214,5 +214,51 @@ module Arch
     return ENDIAN_LITTLE
   end
 
+#
+  # This routine maps the output of `uname -m` to a Rex architecture constant.
+  # Returns nil if the architecture is not recognized.
+  #
+  def self.from_uname(uname_arch)
+    case uname_arch.to_s.downcase.strip
+    when 'x86_64', 'x64', 'amd64'
+      ARCH_X64
+    when 'i686', 'i386', 'i486', 'i586'
+      ARCH_X86
+    when 'aarch64', 'arm64'
+      ARCH_AARCH64
+    when /\Aarmv[0-9].*l\Z/
+      ARCH_ARMLE
+    when /\Aarmv[0-9].*b\Z/
+      ARCH_ARMBE
+    when 'mips'
+      ARCH_MIPSBE
+    when 'mipsel'
+      ARCH_MIPSLE
+    when 'mips64'
+      ARCH_MIPS64
+    when 'mips64el'
+      ARCH_MIPS64LE
+    when 'ppc'
+      ARCH_PPC
+    when 'ppc64'
+      ARCH_PPC64
+    when 'ppc64le'
+      ARCH_PPC64LE
+    when 's390x'
+      ARCH_ZARCH
+    when 'sparc'
+      ARCH_SPARC
+    when 'sparc64'
+      ARCH_SPARC64
+    when 'riscv32'
+      ARCH_RISCV32LE
+    when 'riscv64'
+      ARCH_RISCV64LE
+    when 'loongarch64'
+      ARCH_LOONGARCH64
+    end
+  end
+
+
 end
 end
