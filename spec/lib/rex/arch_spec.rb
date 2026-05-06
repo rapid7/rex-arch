@@ -290,12 +290,12 @@ RSpec.describe Rex::Arch do
 
     context "when uname_arch is x86_64" do
       let(:uname_arch) { 'x86_64' }
-      it { is_expected.to eq(Rex::Arch::ARCH_X86_64) }
+      it { is_expected.to eq(Rex::Arch::ARCH_X64) }
     end
 
     context "when uname_arch is amd64" do
       let(:uname_arch) { 'amd64' }
-      it { is_expected.to eq(Rex::Arch::ARCH_X86_64) }
+      it { is_expected.to eq(Rex::Arch::ARCH_X64) }
     end
 
     context "when uname_arch is i686" do
@@ -390,7 +390,7 @@ RSpec.describe Rex::Arch do
 
     context "when uname_arch has leading/trailing whitespace" do
       let(:uname_arch) { '  x86_64  ' }
-      it { is_expected.to eq(Rex::Arch::ARCH_X86_64) }
+      it { is_expected.to eq(Rex::Arch::ARCH_X64) }
     end
 
     context "when uname_arch is unrecognized" do
